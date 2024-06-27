@@ -16,21 +16,13 @@ app.use('/green',(req,res,next)=>{
     next();
 })
 
-app.use((req,res)=>{
-    res.send('not found');
+app.use((req,res,next)=>{
+    const { password } = req.query;
+    if(password === 'shrutik'){
+        next();
+    }
+    res.send('YOU NEED A PASSWORD')
 })
-// app.use((req,res,next)=>{
-//     console.log('This is m,y first middleware!');
-//     next();
-//     console.log('This is my first middlewre after calling next')
-// })
-// app.use((req,res,next)=>{
-//     console.log('This is my second middleware');
-//     next();
-// })
-// app.use((req,res,next)=>{
-//     console.log('This is my third middleware');
-// })
 
 app.get('/',(req,res)=>{
     res.send('Hello World');
