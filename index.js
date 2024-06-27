@@ -16,16 +16,29 @@ app.use('/green',(req,res,next)=>{
     next();
 })
 
-app.use((req,res,next)=>{
+const verifyPassword = (req,res,next) => {
     const { password } = req.query;
     if(password === 'shrutik'){
         next();
     }
     res.send('YOU NEED A PASSWORD')
-})
+}
+
+// app.use((req,res,next)=>{
+//     const { password } = req.query;
+//     if(password === 'shrutik'){
+//         next();
+//     }
+//     res.send('YOU NEED A PASSWORD')
+// })
 
 app.get('/',(req,res)=>{
     res.send('Hello World');
+})
+
+
+app.get('/secret',verifyPassword,(req,res)=>{
+    res.send('I HATE EVERYONE');
 })
 
 app.get('/blue',(req,res)=>{
